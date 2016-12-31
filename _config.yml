@@ -24,7 +24,7 @@ github_username:  martian101
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-architect
+theme: jekyll-theme-tactile
 gems:
   - jekyll-feed
 exclude:
