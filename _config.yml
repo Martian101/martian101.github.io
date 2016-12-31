@@ -5,8 +5,8 @@
 permalink:           pretty
 
 # Setup
-title:               Lanyon
-tagline:             'A Jekyll theme'
+title:               Martian'S Blog
+tagline:             'share thr knowledge'
 description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
 url:                 http://lanyon.getpoole.com
 baseurl:             ''
@@ -22,3 +22,11 @@ author:
 version:             1.0.0
 markdown: redcarpet
 gems: [jekyll-paginate, jekyll-gist]
+# Build settings
+markdown: kramdown
+theme: lanyon
+gems:
+  - jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock
