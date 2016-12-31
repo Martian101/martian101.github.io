@@ -6,17 +6,17 @@ permalink:           pretty
 
 # Setup
 title:               Martian'S Blog
-tagline:             'share thr knowledge'
-description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:                 http://lanyon.getpoole.com
+tagline:             '流年不利是本命'
+description:         '半碗茗香半盏杯，半游江湖半思归。半随潮流半念北，半自奋起半意颓。'
+url:                 https://martian101.github.io/
 baseurl:             ''
 paginate:            5
 
 # About/contact
 author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
+  name:              zqzhao5
+  url:               https://twitter.com/zqzhao5
+  email:             zqzhao5@gmail.com
 
 # Custom vars
 version:             1.0.0
