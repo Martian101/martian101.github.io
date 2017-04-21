@@ -9,7 +9,7 @@ title:               Martian'S Blog
 tagline:             '穷诸玄辨，若一毫置于太虚；竭世枢机，似一滴投于巨壑'
 description:         '半碗茗香半盏杯，<br>半游江湖半思归。<br>半随潮流半念北，<br>半自奋起半意颓。'
 url:                 https://martian101.github.io
-baseurl:             ''
+baseurl:             'https://martian101.github.io'
 paginate:            5
 
 # About/contact
