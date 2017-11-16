@@ -3,13 +3,13 @@ Paxos是用来保证分布式系统一致性的协议，它将分布式系统中
 Basic Paxos协议简单确定一个值，如将k的值设为某个值v，当某个Proposer发起的提议通过(Acceptor集群超过半数实例接受了将k设置为v的提议)后，k的值就确定了，并且协议保证这个值永远不会被更改。
 
 多数派确定一个值，为什么需要Prepare和Accept两个阶段，一个Accept阶段达到多数派不也能确定么？我在学习Paxos的时候在这里纠结了一段时间，现在假设只有一个Accept阶段，5个实例想要确定一个值，可能的场景如下:
-1. **S1提议设置k的值为X，半数Acceptor接受后后S5发起请求设置k的值为Y**
+ 1. **S1提议设置k的值为X，半数Acceptor接受后后S5发起请求设置k的值为Y**
 
 ![enter image description here](http://oojr8w6at.bkt.clouddn.com/image/png/paxos_1.png)
 
 显然协议可以达到要求，尽管S4和S5最终将k值设置成了Y，根据法定集合性质，超过半数的Acceptor认可X值后，不会再有超过半数的Acceptor认可Y。
 
-2. **S1提议设置k的值为X，S5提议设置k的值为Y，S3提议设置k值为Z**
+ 2. **S1提议设置k的值为X，S5提议设置k的值为Y，S3提议设置k值为Z**
 
 ![enter image description here](http://oojr8w6at.bkt.clouddn.com/image/png/paxos_2.png)
 
@@ -20,7 +20,7 @@ Basic Paxos协议简单确定一个值，如将k的值设为某个值v，当某�
 为了打破死锁，就需要采用某种抢占策略。现在提议中只有一个值，现实中根据提议值来作为抢占的依据不现实，意味着提议中肯定要携带额外的信息，这就是提议号。还是采用一轮协议，提议中加入提议号可以达成一致么？
 为了保证全局唯一，提议号采用(自增ID + ServerId)的形式，Acceptor发现有冲突时，选择提议号更大的提议。
 
-3. **请求方式和场景2的时序一样，采用提议号打破死锁，最终值被确定为Y**
+ 3. **请求方式和场景2的时序一样，采用提议号打破死锁，最终值被确定为Y**
 
 ![enter image description here](http://oojr8w6at.bkt.clouddn.com/paxos_3.png)
 
@@ -29,7 +29,7 @@ Basic Paxos协议简单确定一个值，如将k的值设为某个值v，当某�
 Proposer发现已经有值被接受，就重新提议新的值为已经接受的值。如果Proposer发现Acceptor接受了两个不同的值，就选择提议号较大的值。
 但是采用这种策略仍然无法打破死锁，如下面的场景4。
 
-4. **S1提议设置k为X, S3提议设置k为Z，S5提议设置k为Y**
+ 4. **S1提议设置k为X, S3提议设置k为Z，S5提议设置k为Y**
 
 ![enter image description here](http://oojr8w6at.bkt.clouddn.com/paxos_4.png)
 
