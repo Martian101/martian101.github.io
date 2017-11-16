@@ -48,6 +48,7 @@ Accept阶段，如果Acceptor还没有接收过Accept请求的提议，就接受
 ![enter image description here](http://oojr8w6at.bkt.clouddn.com/image/png/paxos.png)
 
 中文表述可能不太准确，Lamport大神在他的《Paxos Made Simple》原论文中的表述如下:
+
 	Phase 1
 	
 	(a) A proposer selects a proposal number n and sends a prepare request with number n to a majority of acceptors.
@@ -67,6 +68,9 @@ Accept阶段，如果Acceptor还没有接收过Accept请求的提议，就接受
 
 因为提议号充当抢占式锁的角色，所以Paxos存在活锁的问题，可能永远无法达成一致。但不像死锁，一旦死锁就永远不可能达成一致了。
 参考:
+
 https://www.zhihu.com/question/19787937
+
 https://youtu.be/JEpsBg0AO6o
+
 http://codemacro.com/2014/10/15/explain-poxos/
