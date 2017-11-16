@@ -43,11 +43,9 @@ Proposer发现已经有值被接受，就重新提议新的值为已经接受的
 
 可以看到采用两阶段的协议，Prepare阶段和Accept阶段都有可能发生冲突。冲突怎么解决呢？提议号是我们拒绝的依据，Acceptor总是会接受提议号较大的提议。每个阶段都有两种冲突，Prepare阶段Acceptor接收到的提议的提议号n如果比目前接收到的提议编号都大，就承诺不再接收任何比n小的提议；如果Acceptor已经接受过Accept请求的提议，同时返回它接受过的提议号最大的Accept阶段的提议。
 Accept阶段，如果Acceptor还没有接收过Accept请求的提议，就接受该请求; 如果已经接受过Accept的请求，只接受比接收过所有Accept请求的提议号都要大的提议。两个阶段都要求得到半数以上的Acceptor通过才算成功，否则Prepare阶段无法进入下一阶段即发起Accept，或者Accept失败重启该过程。
-其实以上就是Basic Paxos的全过程了。
+以上就是Paxos解决冲突的方式。
 
-![enter image description here](http://oojr8w6at.bkt.clouddn.com/image/png/paxos.png)
-
-中文表述可能不太准确，Lamport大神在他的《Paxos Made Simple》原论文中的表述如下:
+中文可能不太准确，Lamport大神在他的《Paxos Made Simple》原论文中对Paxos协议的表述如下:
 
 	Phase 1
 	
@@ -60,6 +58,9 @@ Accept阶段，如果Acceptor还没有接收过Accept请求的提议，就接受
 	(a) If the proposer receives a response to its prepare requests (numbered n) from a majority of acceptors, then it sends an accept request to each of those acceptors for a proposal numbered n with a value v , where v is the value of the highest-numbered proposal among the responses, or is any value if the responses reported no proposals.
 	
 	(b) If an acceptor receives an accept request for a proposal numbered n, it accepts the proposal unless it has already responded to a prepare request having a number greater than n.
+	
+一个完整的Paxos流程如下图所示:
+![enter image description here](http://oojr8w6at.bkt.clouddn.com/image/png/paxos.png)
 
 总结下理解Paxos协议的几个关键点:
 1. 法定集合性质，包括Prepare阶段和Accept阶段都有体现
