@@ -68,6 +68,7 @@ Accept阶段，如果Acceptor还没有接收过Accept请求的提议，就接受
 3. 每个Acceptor Accept的提议号总是目前接收到的最大的提议号
 
 因为提议号充当抢占式锁的角色，所以Paxos存在活锁的问题，可能永远无法达成一致。但不像死锁，一旦死锁就永远不可能达成一致了。
+
 参考:
 
 https://www.zhihu.com/question/19787937
