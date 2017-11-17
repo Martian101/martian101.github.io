@@ -77,4 +77,6 @@ https://www.zhihu.com/question/19787937
 
 https://youtu.be/JEpsBg0AO6o
 
+https://www.slideshare.net/drmingdrmer/paxos-51731377
+
 http://codemacro.com/2014/10/15/explain-poxos/
