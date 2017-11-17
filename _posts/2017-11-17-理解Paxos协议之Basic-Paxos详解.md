@@ -3,6 +3,7 @@ Paxos是用来保证分布式系统一致性的协议，它将分布式系统中
 Basic Paxos协议简单确定一个值，如将k的值设为某个值v，当某个Proposer发起的提议通过(Acceptor集群超过半数实例接受了将k设置为v的提议)后，k的值就确定了，并且协议保证这个值永远不会被更改。
 
 多数派确定一个值，为什么需要Prepare和Accept两个阶段，一个Accept阶段达到多数派不也能确定么？我在学习Paxos的时候在这里纠结了一段时间，现在假设只有一个Accept阶段，5个实例想要确定一个值，可能的场景如下:
+
 1 . **S1提议设置k的值为X，半数Acceptor接受后后S5发起请求设置k的值为Y**
 
 ![enter image description here](http://oojr8w6at.bkt.clouddn.com/image/png/paxos_1.png)
@@ -65,7 +66,8 @@ Accept阶段，如果Acceptor还没有接收过Accept请求的提议，就接受
 总结下理解Paxos协议的几个关键点:
 1. 法定集合性质，包括Prepare阶段和Accept阶段都有体现
 2. 使用提议号充当"抢占式锁"的角色
-3. 每个Acceptor Accept的提议号总是目前接收到的最大的提议号
+3. Prepare阶段用于发现已经被接受的值和形成Prepare阶段多数派
+4. 每个Acceptor Accept的提议号总是目前接收到的最大的提议号
 
 因为提议号充当抢占式锁的角色，所以Paxos存在活锁的问题，可能永远无法达成一致。但不像死锁，一旦死锁就永远不可能达成一致了。
 
