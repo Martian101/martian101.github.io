@@ -37,9 +37,9 @@ Proposer发现已经有值被接受，就重新提议新的值为已经接受的
 出现了S1、S2接受X, S3, S4接受Z, S5接受Y的情况，之所以会这样是因为S5在检查是否有值被接受和提议是同一个过程，检查同时挤占了Acceptor资源，最终导致再也无法形成多数派。
 
 这个时候自然想到采用两阶段的协议，第一个阶段用来发现目前已经被Acceptor接受的协议但是并不真正提交，第二个阶段才真正发起提交。
-
+<br>
 **Prepare阶段**，得到半数的Acceptor回应后检查是否有已经被接受的值，如果有选择提议号较大的提议的值作为Accept阶段将要提交的值，否则提交自己的值。
-
+<br>
 **Accept阶段**，真正提交阶段。
 
 ![enter image description here](http://oojr8w6at.bkt.clouddn.com/image/png/paxos_5.png)
